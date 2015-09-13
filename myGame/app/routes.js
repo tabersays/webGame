@@ -45,7 +45,7 @@ module.exports = function (app) {
     });
     //frontend routs
     
-    app.get('/', function (req, res) {
+    app.get('*', function (req, res) {
         res.sendfile('./public/views/index.html');
     });
 };

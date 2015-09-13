@@ -1,0 +1,17 @@
+﻿<div class="jumbotron text-center">
+    <h1>Users</h1>
+    <p>{{tagline}}</p>
+    <div class="container">
+        <div class="row">
+            <input ng-model="myUser" />
+            <button ng-click="addUser(myUser)">Add user</button>
+        </div>
+        
+        <div class="row" ng-init="getUsers()">
+            <div class="col-xs-3" ng-repeat="user in users">
+                <p>{{user.name}}</p>
+                <a ng-click="deleteUser(user._id)">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>

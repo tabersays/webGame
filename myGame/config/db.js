@@ -1,4 +1,4 @@
 ﻿//config/db.js
 module.exports = {
-    url: 'mongodb://localhost:27017/example'
+    url: 'mongodb://webGame:aStrongPasswordHasWords@ds047468.mongolab.com:47468/my-test'
 }

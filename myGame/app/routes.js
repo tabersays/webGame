@@ -9,21 +9,21 @@ module.exports = function (app) {
     //server routes go here
     //api and authentication
     
-    app.get('/api/users', function (req, res) {
+    app.route('/api/users')
+    .get(function (req, res) {
         User.find(function (err, users) {
             if (err) {
+                console.log('shit got real!');
                 res.send(err);
             }
-            console.log(users);
             res.json(users);
         });
-    });
+    })
     //route for creating
-    app.post('/api/users', function (req, res) {
+    .post(function (req, res) {
         var user = new User();
-        console.log(req.body.name);
         user.name = req.body.name;
-
+        
         user.save(function (err) {
             if (err) {
                 console.log('shit got real!');
@@ -33,7 +33,7 @@ module.exports = function (app) {
         });
     });
     //route for deleting
-    app.delete('/api/users/:user', function (req, res) {
+    app.route('/api/users/:user').delete(function (req, res) {
         User.remove({
             _id: req.params.user
         }, function (err, user) {
@@ -45,7 +45,7 @@ module.exports = function (app) {
     });
     //frontend routs
     
-    app.get('*', function (req, res) {
+    app.get('/', function (req, res) {
         res.sendfile('./public/views/index.html');
     });
 };

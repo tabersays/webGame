@@ -29,6 +29,7 @@
     <Folder Include="app" />
     <Folder Include="app\models" />
     <Folder Include="app\controllers\" />
+    <Folder Include="app\views\" />
     <Folder Include="config" />
     <Folder Include="public" />
     <Folder Include="public\css" />
@@ -39,6 +40,10 @@
     <Folder Include="public\views" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="app\controllers\api.js" />
+    <Compile Include="app\controllers\authentication.js" />
+    <Compile Include="app\controllers\game.js" />
+    <Compile Include="app\controllers\index.js" />
     <Compile Include="app\models\user.js" />
     <Compile Include="app\routes.js" />
     <Compile Include="config\db.js" />

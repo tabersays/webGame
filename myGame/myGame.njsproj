@@ -20,6 +20,7 @@
     <Content Include=".bowerrc" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
+    <Content Include="public\views\about.html" />
     <Content Include="public\views\credits.html" />
     <Content Include="public\views\home.html" />
     <Content Include="public\views\index.html" />
@@ -49,6 +50,7 @@
     <Compile Include="config\db.js" />
     <Compile Include="public\js\app.js" />
     <Compile Include="public\js\appRoutes.js" />
+    <Compile Include="public\js\controllers\AboutCtrl.js" />
     <Compile Include="public\js\controllers\CreditCtrl.js" />
     <Compile Include="public\js\controllers\MainCtrl.js" />
     <Compile Include="public\js\controllers\UserCtrl.js" />

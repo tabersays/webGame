@@ -11,6 +11,10 @@
     .when('/credits', {
             templateUrl: 'views/credits.html',
             controller: 'CreditController'
+        })
+    .when('/about', {
+            templateUrl: 'views/about.html',
+            controller: 'AboutController'
         });
         $locationProvider.html5Mode(true);
     }]);

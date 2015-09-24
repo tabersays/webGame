@@ -1,20 +1,20 @@
 ﻿var User = require('./models/user.js');
+var path = require('path');
 
-module.exports = function (app) {
+module.exports = function (app, passport) {
     app.use(function (req, res, next) {
         // do logging
-        console.log('Something is happening.');
         next(); // make sure we go to the next routes and don't stop here
     });
     //server routes go here
-    //api and authentication
-    
+    // user test routes
     app.route('/api/users')
-    .get(function (req, res) {
+    .get(isAuthenticated, function (req, res) {
+            console.log('Im here')
         User.find(function (err, users) {
             if (err) {
                 console.log('shit got real!');
-                res.send(err);
+                return res.send(err);
             }
             res.json(users);
         });
@@ -23,7 +23,7 @@ module.exports = function (app) {
     .post(function (req, res) {
         var user = new User();
         user.name = req.body.name;
-        
+
         user.save(function (err) {
             if (err) {
                 console.log('shit got real!');
@@ -43,9 +43,44 @@ module.exports = function (app) {
             res.json({ message: 'We destroyed something' });
         });
     });
+
+    //signup login logout
+    //api and authentication
+    app.get('/loggedin', function (req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    });
+    app.get('/api/logout', function (req, res) {
+        req.logout();
+        res.send(200);
+    });
+    app.post('/api/signup', function (req, res) {
+        passport.authenticate('local-signup', function (err, user) {
+            console.log(err);
+            if (err) {
+                return err;
+            }
+            else {
+                res.json(user);
+            }
+        })(req, res);
+    });
+    app.post('/api/login', passport.authenticate('local-login'), function (req, res) {
+        res.send(req.user);
+    });
+
     //frontend routs
-    
+    app.get('/', function (req, res) {
+        res.sendFile(path.join(__dirname, '../public', 'index.html'));
+    });
+
     app.get('*', function (req, res) {
-        res.sendfile('./public/views/index.html');
+        res.sendFile(path.join(__dirname, '../public', 'index.html'));
     });
 };
+
+function isAuthenticated(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return res.sendStatus(401);
+    }
+    next();
+}

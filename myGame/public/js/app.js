@@ -1,1 +1,3 @@
-﻿angular.module('sampleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'UserCtrl', 'CreditCtrl', 'AboutCtrl', 'UserService']);
+﻿angular.module('TRPHeroes', ['ngRoute', 'appRoutes', 'MainCtrl', 
+    'UserCtrl', 'CreditCtrl', 'AboutCtrl', 'LoginCtrl', 'SignUpCtrl', 
+    'UserService', 'AccountService']);

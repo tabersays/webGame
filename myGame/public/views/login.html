@@ -1,0 +1,12 @@
+﻿<div class="row jumbotron text-center">
+    <h2>Login</h2>
+    <form class="form-inline">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Email" ng-model="userData.email" />
+        </div>
+        <div class="input-group">
+            <input type="password" class="form-control" placeholder="Password" ng-model="userData.password" />
+        </div>
+        <button class="btn btn-primary" ng-click="login(userData)" href="/user">Login</button>
+    </form>
+</div>

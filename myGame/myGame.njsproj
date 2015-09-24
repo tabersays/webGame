@@ -20,10 +20,14 @@
     <Content Include=".bowerrc" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
+    <Content Include="public\css\style.css" />
+    <Content Include="public\partials\nav.html" />
     <Content Include="public\views\about.html" />
     <Content Include="public\views\credits.html" />
     <Content Include="public\views\home.html" />
-    <Content Include="public\views\index.html" />
+    <Content Include="public\index.html" />
+    <Content Include="public\views\login.html" />
+    <Content Include="public\views\signup.html" />
     <Content Include="public\views\user.html" />
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +42,7 @@
     <Folder Include="public\js" />
     <Folder Include="public\js\controllers" />
     <Folder Include="public\js\services" />
+    <Folder Include="public\partials\" />
     <Folder Include="public\views" />
   </ItemGroup>
   <ItemGroup>
@@ -47,13 +52,18 @@
     <Compile Include="app\controllers\index.js" />
     <Compile Include="app\models\user.js" />
     <Compile Include="app\routes.js" />
+    <Compile Include="config\auth.js" />
     <Compile Include="config\db.js" />
+    <Compile Include="config\passport.js" />
     <Compile Include="public\js\app.js" />
     <Compile Include="public\js\appRoutes.js" />
     <Compile Include="public\js\controllers\AboutCtrl.js" />
     <Compile Include="public\js\controllers\CreditCtrl.js" />
+    <Compile Include="public\js\controllers\LoginCtrl.js" />
     <Compile Include="public\js\controllers\MainCtrl.js" />
+    <Compile Include="public\js\controllers\SignUpCtrl.js" />
     <Compile Include="public\js\controllers\UserCtrl.js" />
+    <Compile Include="public\js\services\AccountService.js" />
     <Compile Include="public\js\services\UserService.js" />
     <Compile Include="server.js" />
   </ItemGroup>

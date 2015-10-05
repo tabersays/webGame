@@ -10,7 +10,6 @@ module.exports = function (app, passport) {
     // user test routes
     app.route('/api/users')
     .get(isAuthenticated, function (req, res) {
-            console.log('Im here')
         User.find(function (err, users) {
             if (err) {
                 console.log('shit got real!');

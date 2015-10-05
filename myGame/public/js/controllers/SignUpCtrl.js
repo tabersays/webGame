@@ -4,6 +4,7 @@
         password: ''
     };
     $scope.confirmPassword = '';
+    $scope = false;
     $scope.signup = function (userData) {
         Account.create(userData).then(function (response) {
             console.log(response);

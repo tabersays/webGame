@@ -1,28 +1,36 @@
 ﻿angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-        $routeProvider
-    .when('/', {
+    $routeProvider
+        .when('/', {
             templateUrl: 'views/home.html',
             controller: 'MainController'
         })
-    .when('/users', {
+        .when('/users', {
             templateUrl: 'views/user.html',
             controller: 'UserController'
         })
-    .when('/credits', {
+        .when('/credits', {
             templateUrl: 'views/credits.html',
             controller: 'CreditController'
         })
-    .when('/about', {
+        .when('/about', {
             templateUrl: 'views/about.html',
             controller: 'AboutController'
         })
-    .when('/login', {
+        .when('/login', {
             templateUrl: 'views/login.html',
             controller: 'LoginController'
         })
-    .when('/signup', {
+        .when('/signup', {
             templateUrl: 'views/signup.html',
             controller: 'SignUpController'
+        })
+        .when('/game', {
+            templateUrl: 'views/game.html',
+            controller: 'GameController'
+        })
+
+        .otherwise({
+            redirectTo: '/'
         });
-        $locationProvider.html5Mode(true);
-    }]);
+    $locationProvider.html5Mode(true);
+}]);

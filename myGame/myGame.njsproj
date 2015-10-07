@@ -64,7 +64,7 @@
     <Compile Include="public\js\controllers\SignUpCtrl.js" />
     <Compile Include="public\js\controllers\UserCtrl.js" />
     <Compile Include="public\js\services\AccountService.js" />
-    <Compile Include="public\js\services\UserService.js" />
+    <Compile Include="public\js\services\CharacterService.js" />
     <Compile Include="server.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

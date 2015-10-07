@@ -1,8 +1,11 @@
 var mongoose = require('mongoose');
 
 var characterSchema = mongoose.Schema({
-    userId: Number,
+    userId: String,
     name: String,
+    gender: String,
+    portrait: String,
+    spriteSheet: String,
     attributes: {
         str: Number,
         dex: Number,

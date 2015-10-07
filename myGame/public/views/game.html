@@ -1,15 +1,39 @@
 <div class="row jumbotron text-center">
-    <h2>TRP Heroes!</h2>
-    <canvas id="game" width="640px" height="480px"></canvas>
-    <script src="js/game/helper.js"></script>
-    <script src="js/game/character.js"></script>
-    <script src="js/game/game.js"></script>
-    <!--<script src="js/game/main.js"></script>-->
-    <script>
-        Game.initialize();
-        Game.addPlayer(30, 30);
-
-        Game._intervalId = setInterval(Game.run, 0);
-        console.log('game loaded');
-    </script>
+    <h2>Choose a character</h2>
+    <div class="container">
+        <div class="row" ng-init="getCharacters()" ng-class="{'hide': createNewCharacter}">
+            <div class="col-xs-3" ng-repeat="character in characters track by $index">
+                <p><a ng-click="chooseCharacter(character)">{{character.name}}</a></p>
+                <a ng-click="deleteCharacter(character._id)">Delete</a>
+            </div>
+        </div>
+        <div class="row">
+            <button ng-click="createCharacter()">Create new character</button>
+        </div>
+        <div class="row" ng-class="{'hide': !createNewCharacter}">
+            <h1>Test!</h1>
+            <p>Points remaining: {{points()}}</p>
+            <input type="text" placeholder="name" ng-model="character.name">
+            <br>
+            <input type="text" placeholder="gender" ng-model="character.gender">
+            <br>
+            <input type="text" placeholder="class" ng-model="character.class">
+            <br>
+            <input ng-change="validateStr()" type="number" placeholder="str" ng-model="character.str">
+            <br>
+            <input ng-change="validateDex()" type="number" placeholder="dex" ng-model="character.dex">
+            <br>
+            <input ng-change="validateSpd()" type="number" placeholder="spd" ng-model="character.spd">
+            <br>
+            <input ng-change="validateEnd()" type="number" placeholder="end" ng-model="character.end">
+            <br>
+            <input ng-change="validateCon()" type="number" placeholder="con" ng-model="character.con">
+            <br>
+            <input ng-change="validateMnd()" type="number" placeholder="mnd" ng-model="character.mnd">
+            <br>
+            <input ng-change="validateSol()" type="number" placeholder="sol" ng-model="character.sol">
+            <br>
+            <button ng-click="create()">Create!</button>
+        </div>
+    </div>
 </div>

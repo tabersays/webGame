@@ -8,16 +8,19 @@ Game.initialize = function() {
 };
 
 Game.draw = function(){
-    this.context.clearRect(0,0,640,480);
+    this.context.clearRect(0, 0, 640, 480);
     for(var i = 0; i < this.entities.length; i++){
         this.entities[i].draw(this.context);
     }
 };
 
 Game.update = function(){
-    this.entities[0].update(this.context);
+    this.entities[1].update(this.context);
 };
+Game.addMap = function(image) {
+    Game.entities.push(new Map(image));
 
+};
 Game.addPlayer = function(x, y){
     Game.entities.push(new Character(x, y));
 };

@@ -4,11 +4,10 @@
     </div>
     <ul class="nav navbar-nav">
         <li><a href="/game">Game</a> </li>
-        <li><a href="/users">Users</a></li>
         <li><a href="/credits">Credits</a></li>
         <li><a href="/about">About</a></li>
     </ul>
-    <ul class="nav navbar-nav ">
+    <ul class="nav navbar-nav pull-right" ng-if="!isLoggedIn">
         <li><a href="/login">Login</a></li>
         <li><a href="/signup">Sign Up</a></li>
     </ul>

@@ -7,10 +7,7 @@
     <script src="js/game/game.js"></script>
     <!--<script src="js/game/main.js"></script>-->
     <script>
-        Game.initialize();
-        Game.addMap('js/game/assets/maps/test.png');
-        Game.addPlayer(100, 100);
-
+        Game.initialize("/js/game/assets/maps/test.json");
         Game._intervalId = setInterval(Game.run, 0);
         console.log('game loaded');
     </script>

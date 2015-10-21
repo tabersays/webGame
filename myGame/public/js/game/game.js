@@ -2,9 +2,17 @@ var Game = {};
 
 Game.fps = 30;
 
-Game.initialize = function() {
+Game.initialize = function(JSON) {
+    var map = new Map(JSON);
     this.entities = [];
     this.context = document.getElementById("game").getContext("2d");
+    this.entities.push(map.ground);
+    this.entities.push(map.detail);
+    this.entities.push(map.blocked);
+    this.entities.push(new Character(100, 100));
+    this.entities.push(map.over);
+
+
 };
 
 Game.draw = function(){
@@ -15,14 +23,14 @@ Game.draw = function(){
 };
 
 Game.update = function(){
-    this.entities[1].update(this.context);
+    this.entities[3].update(this.context);
 };
-Game.addMap = function(image) {
-    Game.entities.push(new Map(image));
+Game.addMap = function(JSON) {
+    Game.entities.push(new Map(JSON));
 
 };
 Game.addPlayer = function(x, y){
-    Game.entities.push(new Character(x, y));
+    Game.entities[3] = new Character(x, y);
 };
 
 Game.run = (function(){

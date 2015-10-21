@@ -9,23 +9,27 @@ var left = 3;
 function Character(x, y){
     this.x = x;
     this.y = y;
-    this.hero = new Image();
-    this.hero.src = "js/game/assets/hero/test.png";
+    this.heroImage = new Image();
+    this.heroImage.src = "js/game/assets/hero/test.png";
     this.direction = down;
     this.step = 1;
 }
 //32 x 36
 Character.prototype.draw = function(context){
-    if(this.hero.complete){
-        context.drawImage(this.hero, (32*this.step), (36*this.direction), charWidth, charHeight, this.x, this.y, charWidth, charHeight);
+    if(this.heroImage.complete){
+        context.drawImage(this.heroImage, (32*this.step), (36*this.direction), charWidth, charHeight, this.x, this.y, charWidth, charHeight);
     }
 };
 
 Character.prototype.update = function(context){
-    if (Key.isDown(Key.UP)) this.moveUp();
-    if (Key.isDown(Key.LEFT)) this.moveLeft();
-    if (Key.isDown(Key.DOWN)) this.moveDown();
-    if (Key.isDown(Key.RIGHT)) this.moveRight();
+    if (Key.isDown(Key.UP))
+        this.moveUp();
+    if (Key.isDown(Key.LEFT))
+        this.moveLeft();
+    if (Key.isDown(Key.DOWN))
+        this.moveDown();
+    if (Key.isDown(Key.RIGHT))
+        this.moveRight();
 };
 
 Character.prototype.moveUp = function(){
@@ -42,6 +46,7 @@ Character.prototype.moveUp = function(){
         }
     }
     this.y -= 4;
+    //if(intersectsBlockedPath())
     if (this.y < 0) {
         this.y = 0;
     }

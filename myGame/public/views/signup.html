@@ -1,7 +1,7 @@
 ﻿<div class="row jumbotron text-center">
     <h2>Sign Up</h2>
 
-    <form class="form-group" name="signup">
+    <form class="form-inline" name="signup">
         <div class="input-group">
             <input name="email" type="text" class="form-control" placeholder="Email" ng-model="userData.email"
                    required/>
@@ -12,6 +12,8 @@
         <div  class="input-group" ng-class="{'has-error': (confirmPassword != userData.password) && signup.confirmation.$dirty}">
             <input name="confirmation" type="password" class="form-control" placeholder="Re-type Password" ng-model="confirmPassword">
         </div>
-        <button class="btn btn-primary" ng-click="signup(userData)">Sign Up</button>
+        <div>
+            <button class="btn btn-primary" ng-click="signUp(userData)">Sign Up</button>
+        </div>
     </form>
 </div>

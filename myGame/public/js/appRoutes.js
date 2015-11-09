@@ -24,7 +24,7 @@
             templateUrl: 'views/game.html',
             controller: 'GameController'
         })
-        .when('/game/play', {
+        .when('/game/:id', {
          templateUrl: 'views/play.html',
          controller: 'PlayGameController'
          })

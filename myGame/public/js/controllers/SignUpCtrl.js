@@ -4,11 +4,9 @@
         password: ''
     };
     $scope.confirmPassword = '';
-    //$scope = false;
     $scope.signUp = function (userData) {
         console.log('here');
         Account.create(userData).then(function (response) {
-            //console.log(response);
             $location.url('/');
         });
     }

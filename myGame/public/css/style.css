@@ -1,2 +1,10 @@
 ﻿body {
 }
+
+.sprite {
+    width: 32px;
+    height: 36px;
+}
+.sprite:hover {
+    outline: solid blue;
+}

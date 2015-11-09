@@ -1,5 +1,10 @@
 angular.module('GameCtrl', []).controller('GameController', ['$scope', 'Character', '$location', function ($scope, Character, $location) {
     $scope.createNewCharacter = false;
+    $scope.sprites = [];
+    for(var i = 0; i < 6; i++) {
+        $scope.sprites.push('mHero' + (i + 1));
+        $scope.sprites.push('fHero' + (i + 1));
+    }
     $scope.character = {
         name: '',
         gender: '',
@@ -10,7 +15,8 @@ angular.module('GameCtrl', []).controller('GameController', ['$scope', 'Characte
         end: 1,
         con: 1,
         mnd: 1,
-        sol: 1
+        sol: 1,
+        spriteSheet: 'mHero1'
     };
     $scope.stats = [
         $scope.character.str, $scope.character.dex, $scope.character.spd,
@@ -115,7 +121,7 @@ angular.module('GameCtrl', []).controller('GameController', ['$scope', 'Characte
 
     $scope.chooseCharacter = function(character) {
         window.character = character;
-        $location.url('/game/play');
+        $location.url('/game/' + character._id);
     };
 
     $scope.createCharacter = function() {

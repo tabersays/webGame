@@ -28,6 +28,11 @@ var characterSchema = mongoose.Schema({
         leftWeapon: String,
         rightWeapon: String,
         accessory: String
+    },
+    location: {
+        map: String,
+        x: Number,
+        y: Number
     }
 });
 

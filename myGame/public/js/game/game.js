@@ -4,15 +4,16 @@ Game.fps = 30;
 
 Game.initialize = function(JSON) {
     var map = new Map(JSON);
+    var character = new Character(100, 100);
     this.entities = [];
-    this.context = document.getElementById("game").getContext("2d");
+    this.context = document.getElementById('game').getContext('2d');
     this.entities.push(map.ground);
     this.entities.push(map.detail);
     this.entities.push(map.blocked);
-    this.entities.push(new Character(100, 100));
+    this.entities.push(character);
     this.entities.push(map.over);
-
-
+    this.map = map;
+    this.character = character;
 };
 
 Game.draw = function(){
@@ -23,14 +24,13 @@ Game.draw = function(){
 };
 
 Game.update = function(){
-    this.entities[3].update(this.context);
-};
-Game.addMap = function(JSON) {
-    Game.entities.push(new Map(JSON));
-
-};
-Game.addPlayer = function(x, y){
-    Game.entities[3] = new Character(x, y);
+    var self = this;
+    for(var i = 0; i < self.entities.length; i++){
+        var event =  self.entities[i].update(self.context, self.map, self.character);
+        if (event && event[2].type === 'transfer') {
+            transfer(event[2], self);
+        }
+    }
 };
 
 Game.run = (function(){
@@ -46,7 +46,6 @@ Game.run = (function(){
             nextGameTick += skipTicks;
             loops++;
         }
-
         Game.draw();
     };
 })();

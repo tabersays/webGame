@@ -1,7 +1,8 @@
 function Map(JSONMap){
     var self = this;
     $.ajax({
-        url: JSONMap,
+        url: "/js/game/assets/maps/" + JSONMap + ".json",
+        //this is important
         contentType:"application/json; charset=utf-8",
         dataType: "json",
         async: false
@@ -17,6 +18,7 @@ function Map(JSONMap){
         self.detail = new Layer(self, map.detail);
         self.blocked = new Layer(self, map.blocked);
         self.over = new Layer(self, map.over);
+        self.event = new Layer(self, map.event);
     });
 }
 
@@ -33,12 +35,11 @@ Layer.prototype.draw = function(context) {
                 if(tile !== -1) {
                     var tileX = 0;
                     var tileY = 0;
-                    while(tile > 9) {
-                        tile = tile - 10;
+                    while(tile > (self.map.width -1)) {
+                        tile = tile - self.map.width;
                         tileY++;
                     }
                     tileX = tile;
-                    console.log(tileX+' : ' + tileY);
                     context.drawImage(self.map.mapImage, (32*tileX), (32*tileY), 32, 32, (colIndex*32), (rowIndex*32), 32, 32);
                 }
             });
@@ -47,5 +48,5 @@ Layer.prototype.draw = function(context) {
 };
 
 Layer.prototype.update = function(context) {
-
+    return false;
 };

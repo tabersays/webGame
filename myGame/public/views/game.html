@@ -3,8 +3,12 @@
     <div class="container">
         <div class="row" ng-init="getCharacters()" ng-class="{'hide': createNewCharacter}">
             <div class="col-xs-3" ng-repeat="character in characters track by $index">
-                <p><a ng-click="chooseCharacter(character)">{{character.name}}</a></p>
-                <a ng-click="deleteCharacter(character._id)">Delete</a>
+                <div ng-click="chooseCharacter(character)">
+                    <p><a>{{character.name}}</a></p>
+                    <img ng-src="/js/game/assets/sprites/{{character.spriteSheet}}.png">
+                </div>
+
+                <button ng-click="deleteCharacter(character._id)">Delete</button>
             </div>
         </div>
         <div class="row">
@@ -13,25 +17,55 @@
         <div class="row" ng-class="{'hide': !createNewCharacter}">
             <h1>Test!</h1>
             <p>Points remaining: {{points()}}</p>
+            <label>Name:</label>
+            <br>
             <input type="text" placeholder="name" ng-model="character.name">
+            <br>
+            <label>Gender:</label>
             <br>
             <input type="text" placeholder="gender" ng-model="character.gender">
             <br>
+            <label>Class:</label>
+            <br>
             <input type="text" placeholder="class" ng-model="character.class">
+            <br>
+            <label>Str:</label>
             <br>
             <input ng-change="validateStr()" type="number" placeholder="str" ng-model="character.str">
             <br>
+            <label>Dex:</label>
+            <br>
             <input ng-change="validateDex()" type="number" placeholder="dex" ng-model="character.dex">
+            <br>
+            <label>Spd:</label>
             <br>
             <input ng-change="validateSpd()" type="number" placeholder="spd" ng-model="character.spd">
             <br>
+            <label>End:</label>
+            <br>
             <input ng-change="validateEnd()" type="number" placeholder="end" ng-model="character.end">
+            <br>
+            <label>Con:</label>
             <br>
             <input ng-change="validateCon()" type="number" placeholder="con" ng-model="character.con">
             <br>
+            <label>Mnd:</label>
+            <br>
             <input ng-change="validateMnd()" type="number" placeholder="mnd" ng-model="character.mnd">
             <br>
+            <label>Sol:</label>
+            <br>
             <input ng-change="validateSol()" type="number" placeholder="sol" ng-model="character.sol">
+            <br>
+            <label>Character:</label>
+            <div>
+                <img ng-src="/js/game/assets/sprites/{{character.spriteSheet}}.png">
+            </div>
+            <div ng-repeat="sprite in sprites">
+                <div class="col-xs-4">
+                    <img class="sprite" ng-src="/js/game/assets/sprites/{{sprite}}.png" ng-click="character.spriteSheet = sprite">
+                </div>
+            </div>
             <br>
             <button ng-click="create()">Create!</button>
         </div>

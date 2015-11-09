@@ -9,7 +9,6 @@
                     $location.url('/');
                     $scope.isLoggedIn = true;
                 }
-                console.log(response);
             });
         };
     }]);

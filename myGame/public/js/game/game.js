@@ -39,6 +39,16 @@ Game.update = function(){
                 self.stateStack.push( battle(event[2], self));
                 //break;
             }
+            if (event[2].type === 'menu') {
+                Game.fps = 10;
+                self.stateStack.push( menu(event[2], self));
+                //break;
+            }
+            if (event[2].type === 'menuDone') {
+                Game.fps = 30;
+                self.stateStack.pop();
+                //break;
+            }
             if (event[2].type === 'battleDone') {
                 Game.fps = 30;
                 self.character.x -= 10;
@@ -49,19 +59,7 @@ Game.update = function(){
 };
 
 Game.run = (function(){
-    /*var loops = 0, skipTicks = 1000 / Game.fps,
-        maxFrameSkip = 10,
-        nextGameTick = (new Date).getTime();*/
-
     return function() {
-        /*loops = 0;
-
-        while ((new Date).getTime() > nextGameTick && loops < maxFrameSkip) {
-            Game.update();
-            nextGameTick += skipTicks;
-            loops++;
-        }
-        Game.draw();*/
         Game.update();
         Game.draw();
         window.setTimeout(Game.run, 1000/Game.fps);

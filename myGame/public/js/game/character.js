@@ -24,8 +24,14 @@ function Character(){
         self.direction = down;
         self.step = 1;
         $.extend(true, self, character);
+        self.attack = function() {
+            return {
+                name: 'punch',
+                type: 'physical',
+                damage: self.attributes.str
+            }
+        };
         console.log(self);
-        console.log(character);
     });
 }
 Character.prototype.draw = function(context){
@@ -46,6 +52,9 @@ Character.prototype.update = function(context, map){
 
     if (Key.isDown(Key.RIGHT))
         this.moveRight(map);
+
+    if (Key.isDown(Key.MENU))
+        return [0, 1, {type: 'menu'}];
 
     var event = intersects(this, map.event);
     if (event) {

@@ -1,10 +1,9 @@
 function Map(JSONMap){
     var self = this;
     $.ajax({
-        url: "/js/game/assets/maps/" + JSONMap + ".json",
-        //this is important
-        contentType:"application/json; charset=utf-8",
-        dataType: "json",
+        url: '/js/game/assets/maps/' + JSONMap + '.json',
+        contentType:'application/json; charset=utf-8',
+        dataType: 'json',
         async: false
     }).complete(function (mapData) {
         var map = mapData.responseJSON;

@@ -33,7 +33,13 @@ var characterSchema = mongoose.Schema({
         map: String,
         x: Number,
         y: Number
-    }
+    },
+    hp: Number,
+    ep: Number,
+    mp: Number,
+    maxHp: Number,
+    maxEp: Number,
+    maxMp: Number
 });
 
 module.exports = mongoose.model('character', characterSchema);

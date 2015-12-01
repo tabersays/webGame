@@ -12,6 +12,12 @@ function makeCharacter(newCharacter, character) {
     newCharacter.attributes.con = character.con;
     newCharacter.attributes.mnd = character.mnd;
     newCharacter.attributes.sol = character.sol;
+    newCharacter.hp = newCharacter.attributes.con * 10;
+    newCharacter.mp = newCharacter.attributes.mnd * 10;
+    newCharacter.ep = newCharacter.attributes.end * 10;
+    newCharacter.maxHp = newCharacter.attributes.con * 10;
+    newCharacter.maxMp = newCharacter.attributes.mnd * 10;
+    newCharacter.maxEp = newCharacter.attributes.end * 10;
     newCharacter.class = character.class;
     newCharacter.location.map = 'test';
     newCharacter.location.x = 100;
@@ -21,8 +27,7 @@ function makeCharacter(newCharacter, character) {
 
 module.exports = function (app, passport) {
     app.use(function (req, res, next) {
-        // do logging
-        next(); // make sure we go to the next routes and don't stop here
+        next();
     });
     //server routes go here
     app.get('/api/characters/:id', isAuthenticated, function(req, res) {
@@ -54,17 +59,28 @@ module.exports = function (app, passport) {
                 res.json({ message: 'We made something' });
             });
         });
-    app.delete('/api/characters/:character', function (req, res) {
-        Character.remove({
-            _id: req.params.character
-        }, function (err, user) {
+    app.delete('/api/characters/:id', function (req, res) {
+        Character.remove({userId: req.user._id, _id: req.params.id}, function (err, user) {
             if (err) {
                 console.log('shit got real!');
             }
             res.json({ message: 'We destroyed something' });
         });
     });
-
+    app.post('/api/save-location/:id', function (req, res) {
+        Character.findOne({userId: req.user._id, _id: req.params.id}, function(err, character) {
+            if (err) {
+                console.log('shit got real!');
+            }
+            else {
+                character.location.x = req.body.location.x;
+                character.location.y = req.body.location.y;
+                character.location.map = req.body.location.map;
+                character.save();
+                res.json({message: 'success'});
+            }
+        });
+    });
     //api and authentication
     app.get('/loggedin', function (req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');

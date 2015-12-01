@@ -6,26 +6,28 @@ var up = 0;
 var right = 1;
 var down = 2;
 var left = 3;
-function Character(x, y){
+function Character(){
     var self = this;
     $.ajax({
         url: '/api/characters/' + window.myCharacterId,
-        //this is important
-        contentType:"application/json; charset=utf-8",
-        dataType: "json",
+        contentType:'application/json; charset=utf-8',
+        dataType: 'json',
         async: false
     }).complete(function(character) {
         character = character.responseJSON;
         self.id = character._id;
         self.x = character.location.x;
         self.y = character.location.y;
+        self.map = character.location.map;
         self.heroImage = new Image();
-        self.heroImage.src = "js/game/assets/hero/" + character.spriteSheet + ".png";
+        self.heroImage.src = 'js/game/assets/hero/' + character.spriteSheet + '.png';
         self.direction = down;
         self.step = 1;
+        $.extend(true, self, character);
+        console.log(self);
+        console.log(character);
     });
 }
-//32 x 36
 Character.prototype.draw = function(context){
     if(this.heroImage.complete){
         context.drawImage(this.heroImage, (32*this.step), (36*this.direction), charWidth, charHeight, this.x, this.y, charWidth, charHeight);
@@ -44,6 +46,7 @@ Character.prototype.update = function(context, map){
 
     if (Key.isDown(Key.RIGHT))
         this.moveRight(map);
+
     var event = intersects(this, map.event);
     if (event) {
         return event;

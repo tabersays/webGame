@@ -38,5 +38,16 @@
 
         </p>
     </div>
+
+    <p id="test" on>5</p>
+    <input id="slider" type="range" onchange="update()" value="5">
+
+    <script>
+        function update() {
+            var test = document.getElementById("test");
+            var slider = document.getElementById("slider");
+            test.innerHTML = slider.value;
+        }
+    </script>
     
 </div>

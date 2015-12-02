@@ -57,8 +57,17 @@ function battle(event, self) {
             if (this.choice) {
                 if (this.hero.hp <= 0 || this.enemy.hp <= 0) {
                     //someone died
-                    if (this.hero.hp <= 0)
-                        this.hero.hp = this.hero.maxHp;
+                    var id = this.hero._id;
+                    if (this.hero.hp <= 0) {
+                        //this.hero.hp = this.hero.maxHp;
+                        $.ajax({
+                            url: '/api/character/' + id,
+                            type: 'delete',
+                            success: function() {
+                                window.location.href = '/game';
+                            }
+                        });
+                    }
                     return ([0, 1, {type: 'battleDone'}]);
                 }
                 this.choice = false;

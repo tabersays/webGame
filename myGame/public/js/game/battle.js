@@ -10,7 +10,7 @@ var attack = {
         return {
             name: 'Flame',
             type: 'physical',
-            damage: hero.str + 10
+            damage: hero.sol + 10
         };
     },
     heavySmash: function(hero){
@@ -100,6 +100,7 @@ function battle(event, self) {
                             }
                         });
                     }
+                    this.hero.items.push('Wolf tooth');
                     return ([0, 1, {type: 'battleDone'}]);
                 }
                 this.choice = false;

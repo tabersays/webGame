@@ -46,15 +46,23 @@ function menu(event, self) {
                 context.font = '20px Arial';
                 context.fillText('View', canvasWidth/3 + 10, 50);
 
-                context.drawImage(this.hero.heroImage, 32, 36*2, 32, 36, canvasWidth/3 + 120, 50, 32, 36)
+                context.drawImage(this.hero.heroImage, 32, 36*2, 32, 36, canvasWidth/3 + 120, 50, 32, 36);
+
+                context.fillStyle = 'black';
+                context.font = '20px Arial';
+                context.fillText(this.hero.gender, canvasWidth/3 + 120, 110);
+                context.fillText(this.hero.class, canvasWidth/3 + 120, 140);
+
             }
             if (this.choiceNumber === 1) {
                 context.fillStyle = 'black';
                 context.font = '20px Arial';
                 context.fillText('Items:', canvasWidth/3 + 10, 50);
 
-                if(this.hero.items.length > 0) {
-                    $.forEach()
+                for (var i = 0; i < this.hero.items.length; i++) {
+                    context.fillStyle = 'black';
+                    context.font = '20px Arial';
+                    context.fillText(this.hero.items[i], canvasWidth/3 + 80, 50 + (30*i));
                 }
             }
             if (this.choiceNumber === 2) {
@@ -66,22 +74,22 @@ function menu(event, self) {
                 context.fillText(this.hero.str, canvasWidth/3 + 80, 80);
 
                 context.fillText('Dex:', canvasWidth/3 + 10, 110);
-                context.fillText(this.hero.str, canvasWidth/3 + 80, 110);
+                context.fillText(this.hero.dex, canvasWidth/3 + 80, 110);
 
                 context.fillText('Spd:', canvasWidth/3 + 10, 140);
-                context.fillText(this.hero.str, canvasWidth/3 + 80, 140);
+                context.fillText(this.hero.spd, canvasWidth/3 + 80, 140);
 
                 context.fillText('Con:', canvasWidth/3 + 10, 170);
-                context.fillText(this.hero.str, canvasWidth/3 + 80, 170);
+                context.fillText(this.hero.con, canvasWidth/3 + 80, 170);
 
                 context.fillText('End:', canvasWidth/3 + 10, 200);
-                context.fillText(this.hero.str, canvasWidth/3 + 80, 200);
+                context.fillText(this.hero.end , canvasWidth/3 + 80, 200);
 
-                context.fillText('Int:', canvasWidth/3 + 10, 230);
-                context.fillText(this.hero.str, canvasWidth/3 + 80, 230);
+                context.fillText('Mnd:', canvasWidth/3 + 10, 230);
+                context.fillText(this.hero.mnd, canvasWidth/3 + 80, 230);
 
                 context.fillText('Sol:', canvasWidth/3 + 10, 260);
-                context.fillText(this.hero.str, canvasWidth/3 + 80, 260);
+                context.fillText(this.hero.sol, canvasWidth/3 + 80, 260);
             }
             if (this.choiceNumber === 3) {
                 context.fillStyle = 'black';

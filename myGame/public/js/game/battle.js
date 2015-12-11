@@ -1,3 +1,35 @@
+var attack = {
+    basicAttack: function(hero){
+        return {
+            name: 'Punch',
+            type: 'physical',
+            damage: hero.str
+        };
+    },
+    flame: function(hero){
+        return {
+            name: 'Flame',
+            type: 'physical',
+            damage: hero.str + 10
+        };
+    },
+    heavySmash: function(hero){
+        return {
+            name: 'Heavy Smash',
+            type: 'physical',
+            damage: hero.str + 10
+        };
+    },
+    razorClaw: function(hero){
+        return {
+            name: 'Razor Claw',
+            type: 'physical',
+            damage: hero.str + 10
+        };
+    }
+};
+
+
 function battle(event, self) {
     var battleState = [];
     /////////////////////////////////////////////
@@ -25,14 +57,14 @@ function battle(event, self) {
                     return {
                         name: 'razor fang',
                         type: 'physical',
-                        damage: 15
+                        damage: this.str + 10
                     }
                 }
                 else {
                     return {
                         name: 'bite',
                         type: 'physical',
-                        damage: 5
+                        damage: this.str + 4
                     }
                 }
             }
@@ -40,7 +72,7 @@ function battle(event, self) {
                 return {
                     name: 'bite',
                     type: 'physical',
-                    damage: 5
+                    damage: this.str + 4
                 }
             }
         }
@@ -91,21 +123,45 @@ function battle(event, self) {
                     else {
                         console.log(this.hero);
                         var enemyAttack = this.enemy.attack();
-                        var heroAttack = this.hero.attack();
+                        console.log(attack['basicAttack'](this.hero));
+                        var heroAttack = attack['basicAttack'](this.hero);
 
-                        this.hero.hp -= enemyAttack.damage;
-                        this.enemy.hp -= heroAttack.damage;
-                        this.messages.push(this.enemy.name + ' uses ' + enemyAttack.name + ' and deals ' + enemyAttack.damage + ' damage!');
-                        this.messages.push(this.hero.name + ' uses ' + heroAttack.name + ' and deals ' + heroAttack.damage + ' damage!');
+                        if(this.hero.spd >= this.enemy.spd) {
+                            this.enemy.hp -= heroAttack.damage;
+                            this.messages.push(this.hero.name + ' uses ' + heroAttack.name + ' and deals ' + heroAttack.damage + ' damage!');
 
-                        if (this.enemy.hp <= 0) {
-                            this.enemy.hp = 0;
-                            this.messages.push(this.enemy.name + ' was killed!');
+                            if (this.enemy.hp <= 0) {
+                                this.enemy.hp = 0;
+                                this.messages.push(this.enemy.name + ' was killed!');
+                                return;
+                            }
+
+                            this.hero.hp -= enemyAttack.damage;
+                            this.messages.push(this.enemy.name + ' uses ' + enemyAttack.name + ' and deals ' + enemyAttack.damage + ' damage!');
+
+                            if (this.hero.hp <= 0) {
+                                this.hero.hp = 0;
+                                this.messages.push(this.hero.name + ' was killed!');
+                            }
                         }
+                        else {
 
-                        if (this.hero.hp <= 0) {
-                            this.hero.hp = 0;
-                            this.messages.push(this.hero.name + ' was killed!');
+                            this.hero.hp -= enemyAttack.damage;
+                            this.messages.push(this.enemy.name + ' uses ' + enemyAttack.name + ' and deals ' + enemyAttack.damage + ' damage!');
+
+                            if (this.hero.hp <= 0) {
+                                this.hero.hp = 0;
+                                this.messages.push(this.hero.name + ' was killed!');
+                                return;
+                            }
+
+                            this.enemy.hp -= heroAttack.damage;
+                            this.messages.push(this.hero.name + ' uses ' + heroAttack.name + ' and deals ' + heroAttack.damage + ' damage!');
+
+                            if (this.enemy.hp <= 0) {
+                                this.enemy.hp = 0;
+                                this.messages.push(this.enemy.name + ' was killed!');
+                            }
                         }
                     }
                 }

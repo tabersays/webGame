@@ -24,6 +24,7 @@ function Character(){
         self.direction = down;
         self.step = 1;
         $.extend(true, self, character);
+        $.extend(true, self, character.attributes);
         self.attack = function() {
             return {
                 name: 'punch',

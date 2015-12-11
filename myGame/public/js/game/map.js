@@ -18,6 +18,11 @@ function Map(JSONMap){
         self.blocked = new Layer(self, map.blocked);
         self.over = new Layer(self, map.over);
         self.event = new Layer(self, map.event);
+        self.interact = new Layer(self, map.interact);
+        self.npcs = new NpcArr();
+        for (var i = 0; i < map.npcs.length; i++) {
+            self.npcs.npcs.push(new Npc(map.npcs[i]));
+        }
     });
 }
 

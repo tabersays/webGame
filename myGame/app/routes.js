@@ -19,6 +19,7 @@ function makeCharacter(newCharacter, character) {
     newCharacter.maxMp = newCharacter.attributes.mnd * 10;
     newCharacter.maxEp = newCharacter.attributes.end * 10;
     newCharacter.class = character.class;
+    newCharacter.dialogs = {};
     newCharacter.location.map = 'test';
     newCharacter.location.x = 100;
     newCharacter.location.y = 100;

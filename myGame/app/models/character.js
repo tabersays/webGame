@@ -17,11 +17,11 @@ var characterSchema = mongoose.Schema({
     },
     class: String,
     abilities: {
-        combat: {},
-        magic: {},
-        skills: {}
+        combat: String,
+        magic: String,
+        skills: String
     },
-    dialogs: {},
+    dialogs: mongoose.Schema.Types.Mixed,
     items: [],
     equipped: {
         armor: String,

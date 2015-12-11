@@ -25,13 +25,6 @@ function Character(){
         self.step = 1;
         $.extend(true, self, character);
         $.extend(true, self, character.attributes);
-        self.attack = function() {
-            return {
-                name: 'punch',
-                type: 'physical',
-                damage: self.attributes.str
-            }
-        };
         console.log(self);
     });
 }
@@ -42,6 +35,9 @@ Character.prototype.draw = function(context){
 };
 
 Character.prototype.update = function(context, map){
+    if (this.pause && this.pause === true)
+        return;
+
     if (Key.isDown(Key.UP))
         this.moveUp(map);
 
@@ -56,6 +52,40 @@ Character.prototype.update = function(context, map){
 
     if (Key.isDown(Key.MENU))
         return [0, 1, {type: 'menu'}];
+
+    if (Key.isDown((Key.SELECT))) {
+        switch (this.direction) {
+            case up:
+                this.y -= 5;
+                break;
+            case down:
+                this.y += 5;
+                break;
+            case left:
+                this.x -= 5;
+                break;
+            case right:
+                this.x += 5;
+                break;
+        }
+        var touch = intersects(this, map.interact);
+        switch (this.direction) {
+            case up:
+                this.y += 5;
+                break;
+            case down:
+                this.y -= 5;
+                break;
+            case left:
+                this.x += 5;
+                break;
+            case right:
+                this.x -= 5;
+                break;
+        }
+        if(touch)
+            return touch;
+    }
 
     var event = intersects(this, map.event);
     if (event) {

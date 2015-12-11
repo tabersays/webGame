@@ -93,7 +93,7 @@ function battle(event, self) {
                     if (this.hero.hp <= 0) {
                         //this.hero.hp = this.hero.maxHp;
                         $.ajax({
-                            url: '/api/character/' + id,
+                            url: '/api/characters/' + id,
                             type: 'delete',
                             success: function() {
                                 window.location.href = '/game';

@@ -52,6 +52,10 @@ function menu(event, self) {
                 context.fillStyle = 'black';
                 context.font = '20px Arial';
                 context.fillText('Items:', canvasWidth/3 + 10, 50);
+
+                if(this.hero.items.length > 0) {
+                    $.forEach()
+                }
             }
             if (this.choiceNumber === 2) {
                 context.fillStyle = 'black';

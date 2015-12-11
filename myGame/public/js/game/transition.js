@@ -1,11 +1,12 @@
 function transfer(event, self) {
     var map = new Map(event.location);
     self.stateStack[self.stateStack.length - 1] = [];
-    self.stateStack[self.stateStack.length - 1][0] = map.ground;
-    self.stateStack[self.stateStack.length - 1][1] = map.detail;
-    self.stateStack[self.stateStack.length - 1][2] = map.blocked;
-    self.stateStack[self.stateStack.length - 1][3] = self.character;
-    self.stateStack[self.stateStack.length - 1][4] = map.over;
+    self.stateStack[self.stateStack.length - 1].push(map.ground);
+    self.stateStack[self.stateStack.length - 1].push(map.detail);
+    self.stateStack[self.stateStack.length - 1].push(map.blocked);
+    self.stateStack[self.stateStack.length - 1].push(map.npcs);
+    self.stateStack[self.stateStack.length - 1].push(self.character);
+    self.stateStack[self.stateStack.length - 1].push(map.over);
     self.map = map;
     switch (event.direction) {
         case 'top':
